@@ -1,0 +1,17 @@
+extends base
+
+block main
+  section
+    h3 Fragments
+    ol
+      li One
+      li.fragment Two
+      li.fragment Three #[span.fragment Four] #[span.fragment Five]
+  section
+    h3 Code
+    pre
+      code.javascript.
+        var f = function() {
+          return Promise.resolve('ok');
+        };
+        return Promise.try(f).catch(console.error).finally(console.log);

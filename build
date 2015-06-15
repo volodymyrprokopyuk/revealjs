@@ -1,0 +1,19 @@
+#!/usr/bin/env runghc
+import Development.Shake
+import Development.Shake.Command
+import Development.Shake.FilePath
+import Development.Shake.Util
+
+main :: IO ()
+main = shakeArgs shakeOptions { shakeFiles = ".build/" } $ do
+  want [ "index.html" ]
+
+  "*.html" %> \ target -> do
+    putNormal "** rendering HTML"
+    let source = target -<.> "jade"
+    need [ source, "base.jade" ]
+    cmd "bash -c " [ "jade --pretty " ++ source ]
+
+  "clean" ~> do
+    putNormal "** removing HTML"
+    removeFilesAfter "./" [ "*.html" ]
