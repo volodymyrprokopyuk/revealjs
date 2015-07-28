@@ -1,0 +1,7 @@
+rule html
+  command = jade --pretty $in
+  description = [ $out ]
+
+build index.html: html index.jade | base.jade
+
+default index.html

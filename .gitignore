@@ -1,3 +1,5 @@
 *~
-index.html
 .build/
+.ninja_log
+.ninja_deps
+index.html
